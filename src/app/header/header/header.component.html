@@ -1,0 +1,5 @@
+<header>
+    <span class="logo pointer" routerLink="">TIBCO CE Googler </span>
+    <span *ngIf="!isUserLoggedIn" class="float-right pointer" routerLink="/login">Login</span>
+    <span  *ngIf="isUserLoggedIn" class="float-right pointer" (click)="logout()">Log Out</span>
+</header>
