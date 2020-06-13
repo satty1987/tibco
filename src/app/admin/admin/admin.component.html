@@ -1,21 +1,21 @@
 <div class="container-fluid ">
   <div class="row mt-5" [ngClass]="{'mt-5': isSuperUser}">
 
-    <div class="col"  *ngIf="isSuperUser">
+    <div class="col-md-4 mb-2"  *ngIf="isSuperUser">
       <div class="p-3 bg-success text-white text-center">
         <h4 class="mt-3 display-4">Total Posts</h4>
         <h1 class="display-1 m-0">{{datalist?.length}} </h1>
       </div>
     </div>
 
-    <div class="col"  *ngIf="isSuperUser">
+    <div class="col-md-4 mb-2"  *ngIf="isSuperUser">
       <div class="p-3 bg-danger text-white text-center">
         <h4 class="mt-3 display-4">Reported Posts</h4>
         <h1 class="display-1 m-0">{{reportList?.length}} </h1>
       </div>
     </div>
 
-    <div class="col"  *ngIf="isSuperUser">
+    <div class="col-md-4 mb-2"  *ngIf="isSuperUser">
       <div class="p-3 bg-magenta text-white text-center">
         <h4 class="mt-3 display-4">Update Request</h4>
         <h1 class="display-1 m-0">{{updateRequest?.length}} </h1>
