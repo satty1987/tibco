@@ -545,9 +545,6 @@ html {
         flex-grow: 1;
   }
 
-  .s131 form .inner-form .input-field.first-wrap input {
-    border-right: 0;
-  }
 
   .s131 form .inner-form .input-field.second-wrap {
     min-width: 260px;
