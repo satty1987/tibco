@@ -26,7 +26,7 @@
         <p><b>SOLUTIONS</b> : {{data.solution}}</p>
       </div>
     </div>
-    <div class="col-12 mb-3 " *ngIf="!showData && result.length > itemsPerPage">
+    <div class="col-12 mb-5 " *ngIf="!showData && result.length > itemsPerPage">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
