@@ -26,10 +26,10 @@ export class LoginComponent implements OnInit {
 
   }
 
-  onSubmit(form) {
+  onSubmit() {
     this.submitted = true;
     console.log(this.loginForm.value);
-    if (this.loginForm.value.username == 'admin' && (this.loginForm.value.password == 'admin')) {
+    if (this.loginForm.value.username === 'admin' && (this.loginForm.value.password === 'admin')) {
       this.getSolutionService.isLoggedIn.next(true);
       sessionStorage.setItem('userInfo', JSON.stringify(this.loginForm.value));
       this.router.navigateByUrl('/admin');

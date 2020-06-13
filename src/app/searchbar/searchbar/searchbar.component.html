@@ -10,29 +10,24 @@
           type="button">SEARCH</button>
       </div>
     </div>
+    <h6 *ngIf="isError" class="text-danger mt-3">{{error}}</h6>
   </form>
 </div>
 
 <div>
-  <h4 *ngIf="isError" class="text-danger">{{error}}</h4>
-  <div *ngIf="!showData && !isError">
+  <div *ngIf="!showData && !isError" >
     <div class="col-12 mb-3 mt-3">
-      <h3>Search result for : <strong>'{{nameSearch}} '</strong> </h3>
+      <h3>Search result for : <strong>'{{nameSearch}} '</strong>  <button  *ngIf="!showData" mat-button color="primary" class="float-right" (click)="searchAgain()">Search again</button></h3>
     </div>
-    <div class="col-12 mb-3 " *ngFor="let data of result">
+    <div class="col-12 mb-3 " *ngFor="let data of result | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
       <div class="card p-3">
         <p><b>KEYWORDS</b> : {{data.title}}</p>
         <p><b>ERROR DESCRIPTION</b> : {{data.error_description}}</p>
         <p><b>SOLUTIONS</b> : {{data.solution}}</p>
       </div>
     </div>
+    <div class="col-12 mb-3 " *ngIf="!showData && result.length > itemsPerPage">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
   </div>
-  <!-- <button mat-button (click)="openDialog()">Launch dialog</button> -->
-</div>
-<div class="col-12 mb-3 " *ngIf="!showData">
-  <app-paginator (pageSizeUpdate)="updateRecord($event)" [length]="length" [pageSize]="pageSize"
-    [pageSizeOptions]="pageSizeOptions"></app-paginator>
-</div>
-<div class="col-12 mb-3 ">
-  <button  *ngIf="!showData" class="btn btn-sm btn-primary" (click)="searchAgain()">Search again</button>
 </div>

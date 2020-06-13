@@ -6,14 +6,19 @@ import { SearchbarComponent } from './searchbar/searchbar/searchbar.component';
 import { AdminComponent } from './admin/admin/admin.component';
 import { CreateformComponent } from './create/createform/createform.component';
 import { AcoountGuard } from './acoount.guard';
+import { OktaCallbackComponent, OktaAuthGuard } from '@okta/okta-angular';
 
 
 const routes: Routes = [
   { path: '', component: SearchbarComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [OktaAuthGuard] },
   // { path: 'search', component: SearchbarComponent },
-  { path: 'admin', component: AdminComponent,canActivate : [AcoountGuard] },
-  { path: 'createForm', component: CreateformComponent,canActivate : [AcoountGuard] }
+  { path: 'admin', component: AdminComponent, canActivate: [OktaAuthGuard] },
+  { path: 'createForm', component: CreateformComponent, canActivate: [OktaAuthGuard] },
+  {
+    path: 'implicit/callback',
+    component: OktaCallbackComponent
+  },
 ];
 
 @NgModule({
@@ -21,8 +26,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-
-
 
 
 }

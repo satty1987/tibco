@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { APP_CONSTANT } from '../app.constant';
 
 
 @Injectable({
@@ -8,17 +9,17 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class GetSolutionService {
 
-  constructor(private _http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   isLoggedIn: BehaviorSubject<any> = new BehaviorSubject(false);
+  isAdmin: BehaviorSubject<any> = new BehaviorSubject(false);
   getCE(nameSearch: any) {
-    // let path = 'http://localhost:8092/getsolutions';
-    let url = "https://mongodbconnection-nodejs.herokuapp.com/v1/search?keyword=" + nameSearch;
+    const url = `${APP_CONSTANT.HOST_URL}${APP_CONSTANT.SEARCH_URL}?keyword=${nameSearch}`;
     console.log(url);
-    return this._http.get(url);
+    return this.http.get(url);
   }
   getRequest(path) {
-    return this._http.get(path);
+    return this.http.get(path);
   }
 
   createData(path, body) {
@@ -31,12 +32,14 @@ export class GetSolutionService {
         }
       )
     };
-    return this._http.post(path, body);
+    return this.http.post(path, body);
   }
 
-  deleteRecord(id) {
-    let url = "https://mongodbconnection-nodejs.herokuapp.com/v1/getsolution/" + id;
-    return this._http.delete(url);
+  deleteRecord(url) {
+    return this.http.delete(url);
+  }
+  updateRecord(path,body){
+    return this.http.put(path, body);
   }
 }
 

@@ -1,0 +1,16 @@
+<div class="col-12 mb-3 ">
+  <h1>Reported Posts</h1>
+</div>
+
+<div class="col-12 mb-3 " *ngFor="let data of reportList">
+  <div class="card p-3">
+    <p><b>KEYWORDS</b> : {{data.title}}</p>
+    <p><b>ERROR DESCRIPTION</b> : {{data.error_description}}</p>
+    <p><b>SOLUTIONS</b> : {{data.solution}}</p>
+    <p><b>Reason for Report</b> : {{data.reason}}</p>
+    <p>
+      <button mat-raised-button class="mr-2" (click)="deleteItem(data.deleteId,'approve')" color="primary">Approve</button>
+      <button mat-raised-button class="mr-2" (click)="deleteItem(data.deleteId,'reject')" color="warn">Reject</button>
+    </p>
+  </div>
+</div>

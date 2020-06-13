@@ -3,6 +3,9 @@ background: #e20074;
 color: #fff;
 padding: 10px 30px ;
 }
-header > span{
+/* header > span{
 font-size: 22px;
+} */
+img{
+  width:100px
 }

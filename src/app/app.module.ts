@@ -14,12 +14,25 @@ import { AdminComponent } from './admin/admin/admin.component';
 import { FooterComponent } from './footer/footer/footer.component';
 import { CreateformComponent } from './create/createform/createform.component';
 import { PaginatorComponent } from './paginator/paginator.component';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MaterialModule } from './material/material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { MaterialModule } from './material.module';
+import { OktaAuthModule, OKTA_CONFIG } from '@okta/okta-angular';
+import { UpdateComponent } from './update/update.component';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import { ReportPostsComponent } from './report-posts/report-posts.component';
+import { ReportReasonComponent } from './report-reason/report-reason.component';
+import { UpdateRequestComponent } from './update-request/update-request.component';
 
 
+const oktaConfig = {
+  issuer: 'https://dev-337333.oktapreview.com/oauth2/default',
+  clientId: '0oafkl686pfl21cP10h7',
+  redirectUri: window.location.origin+'/implicit/callback',
+  pkce: true,
+  tokenManager: {
+    storage: 'sessionStorage'
+  },
+};
 
 @NgModule({
   declarations: [
@@ -32,7 +45,11 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
     FooterComponent,
     CreateformComponent,
     PaginatorComponent,
-    DialogBoxComponent
+    DialogBoxComponent,
+    UpdateComponent,
+    ReportPostsComponent,
+    ReportReasonComponent,
+    UpdateRequestComponent
   ],
   imports: [
     BrowserModule,
@@ -40,19 +57,15 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatPaginatorModule,
     MaterialModule,
-    BrowserAnimationsModule,
-    CommonModule
-
-
-
-
+    CommonModule,
+    OktaAuthModule,
+    NgxPaginationModule
 
   ],
-  providers: [],
+  providers: [ { provide: OKTA_CONFIG, useValue: oktaConfig }],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  entryComponents: [DialogBoxComponent],
+  entryComponents: [DialogBoxComponent, UpdateComponent, ReportPostsComponent,UpdateRequestComponent, ReportReasonComponent],
 })
 export class AppModule { }

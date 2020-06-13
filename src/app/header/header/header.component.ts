@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GetSolutionService } from 'src/app/service/get-solution.service';
 import { Router } from '@angular/router';
+import { OktaAuthService } from '@okta/okta-angular';
+import { APP_CONSTANT } from '../../app.constant';
 
 @Component({
   selector: 'app-header',
@@ -8,24 +10,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(private getSolutionService: GetSolutionService,
+  user: any;
+  constructor(
+    private getSolutionService: GetSolutionService,
     private router: Router,
+    public oktaAuth: OktaAuthService
   ) { }
 
   isUserLoggedIn: any;
-  ngOnInit() {
-    this.getSolutionService.isLoggedIn.subscribe(data => {
-      this.isUserLoggedIn = data;
-    })
+  async ngOnInit() {
+    this.isUserLoggedIn = await this.oktaAuth.isAuthenticated();
+    this.getUser();
+    this.oktaAuth.$authenticationState.subscribe((isAuthenticated: boolean) => {
+      this.isUserLoggedIn = isAuthenticated;
+      this.getUser();
+    });
   }
   logout() {
-    console.log('logout');
-    this.getSolutionService.isLoggedIn.next(false);
-    this.getSolutionService.isLoggedIn.subscribe(data => {
-      this.isUserLoggedIn = data;
-    });
-    this.router.navigateByUrl("");
+    this.oktaAuth.logout('/');
     sessionStorage.clear();
+  }
+  async getUser() {
+    this.user = await this.oktaAuth.getUser();
+    console.log(this.user);
+    if (this.user && APP_CONSTANT.SUPER_ADMIN.includes(this.user.email)) {
+      this.getSolutionService.isAdmin.next(true);
+    }
   }
 }

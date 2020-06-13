@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GetSolutionService } from 'src/app/service/get-solution.service';
+import { APP_CONSTANT } from 'src/app/app.constant';
 
 @Component({
   selector: 'app-createform',
@@ -28,7 +29,7 @@ export class CreateformComponent implements OnInit {
 
   }
 
-  onSubmit(form) {
+  onSubmit() {
     this.submitted = true;
     console.log(this.createForm.value);
 
@@ -37,7 +38,7 @@ export class CreateformComponent implements OnInit {
       'error_description': this.createForm.value.error_description,
       'solution': this.createForm.value.solution
     };
-    const path = 'https://mongodbconnection-nodejs.herokuapp.com/v1/getsolution';
+    const path = `${APP_CONSTANT.HOST_URL}${APP_CONSTANT.GET_SOLUTIONS_URL}`;
     this.getSolutionService.createData(path, body).subscribe(data => {
       console.log(data);
       this.router.navigateByUrl('/admin');

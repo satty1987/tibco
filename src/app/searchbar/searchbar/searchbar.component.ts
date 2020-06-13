@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GetSolutionService } from 'src/app/service/get-solution.service';
-import { MatDialog } from '@angular/material';
 import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {APP_CONSTANT} from "../../app.constant"
+
 
 @Component({
   selector: 'app-searchbar',
@@ -13,10 +15,12 @@ export class SearchbarComponent implements OnInit {
   nameSearch: any;
   showData = true;
   ceList: any[] = [];
-  error = ''
+  error = '';
+  itemsPerPage = APP_CONSTANT.ITEMSPERPAGE;
   isError = false;
     // pagination
   length = 0;
+  p =1;
   option = {
     pageIndex: 0,
     pageSize: 5
@@ -48,10 +52,11 @@ export class SearchbarComponent implements OnInit {
         // pagination
       this.updateRecord(this.option);
       this.length = this.ceList.length;
+      this.p = 1;
         // pagination end
     },
       err => {
-        this.error = 'Nothing found in database';
+        this.error = 'No search found in database';
         this.isError = true;
       })
 

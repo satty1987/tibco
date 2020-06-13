@@ -696,3 +696,24 @@ html {
       margin-bottom: 0;
       color:#fff;
   }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-dialog-container .offset-md-3{
+margin-left :0 !important;
+    flex: 1;
+    max-width: 100%;
+}
+
+.ngx-pagination {
+  padding-left: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.ngx-pagination .current{
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background:#e20074 !important;
+}
+.bg-magenta{
+  background-image: linear-gradient(to right top,#e20074,#e91a77,#f1297a,#f8357e,#ff4081);
+}

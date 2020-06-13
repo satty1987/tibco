@@ -1,0 +1,22 @@
+
+
+          <form [formGroup]="updateForm" (ngSubmit)="onSubmit(updateForm)" class=" p-5">
+              <div class="form-group">
+                  <label for="title">KEYWORD</label>
+                  <input type="text" formControlName="title" id="title" class="form-control" required />
+
+              </div>
+              <div class="form-group">
+                  <label for="error_description">ERROR DESCRIPTION</label>
+                  <textarea class="form-control" formControlName="error_description" id="error_description" rows="3" required></textarea>
+
+              </div>
+              <div class="form-group">
+                  <label for="solution">SOLUTION</label>
+                  <textarea class="form-control" formControlName="solution" id="solution" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                  <button mat-raised-button color="primary" [disabled]="updateForm.invalid" class="mr-3">Update</button>
+                  <button mat-raised-button color="warn" type="button"(click)="close()">Cancel</button>
+              </div>
+          </form>
