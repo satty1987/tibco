@@ -1,5 +1,7 @@
+import { environment } from 'src/environments/environment';
+
 export const APP_CONSTANT = {
-  HOST_URL: 'http://localhost:9000/',
+  HOST_URL: environment.apiUrl,
   GET_SOLUTIONS_URL: 'v1/getsolution',
   REPORT_URL: 'v1/report',
   SEARCH_URL: 'v1/search',
