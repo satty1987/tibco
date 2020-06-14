@@ -100,7 +100,7 @@ tibco.get('/search', async (req, res, next) => {
 })
 
 tibco.post("/getsolution", (req, res) => {
-  const requestDb = req.app.locals.db.collection("getsolutions");
+  const requestDb = req.app.locals.db.collection("newPost");
 
   const body = {
     'title': req.body.title,
@@ -114,6 +114,45 @@ tibco.post("/getsolution", (req, res) => {
     res.status(200).send({ message: "Request created successfully" })
   })
 });
+
+tibco.get('/new-posts', (req, res, next) => {
+  const requestDb = req.app.locals.db.collection("newPost");
+  requestDb.find().toArray((err, result) => {
+    if (err) {
+      res.status(400).send({ 'error': err })
+    }
+    if (result === undefined || result.length === 0) {
+      res.status(500).send({ 'error': 'No Result Found in database' })
+    } else {
+      res.status(200).send(result)
+    }
+  })
+})
+
+tibco.post('/new-posts', async (req, res, next) => {
+  const newpostDb = req.app.locals.db.collection("newPost");
+  const requestDb = req.app.locals.db.collection("getsolutions");
+  try {
+    if(req.body.type ==='reject'){
+      const deleteReport = await newpostDb.deleteOne({ '_id': ObjectID(req.body._id) });
+      res.status(200).send({ message: "Request rejeceted successfully" });
+      return;
+    }
+    const deleteReport = await newpostDb.deleteOne({ '_id': ObjectID(req.body._id) });
+    const body = {
+      'title': req.body.title,
+      'error_description': req.body.error_description,
+      'solution': req.body.solution
+    };
+    const postrequest = await requestDb.insertOne(body)
+    res.status(200).send({ message: "Request created successfully" });
+
+  } catch (error) {
+    res.status(400).send(error)
+  }
+
+
+})
 
 tibco.put('/getsolution',async (req, res, next) => {
   const requestDb = req.app.locals.db.collection("getsolutions");
@@ -151,7 +190,8 @@ tibco.post('/update-request', async (req, res, next) => {
       'title': req.body.title,
       'error_description': req.body.error_description,
       'solution': req.body.solution,
-      'updateId': req.body._id
+      'updateId': req.body._id,
+      'reason': req.body.reason
     };
     const update = await requestDb.insertOne(body);
     res.status(200).send({ message: "Request created successfully" })

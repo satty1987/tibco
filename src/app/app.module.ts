@@ -22,6 +22,7 @@ import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { ReportPostsComponent } from './report-posts/report-posts.component';
 import { ReportReasonComponent } from './report-reason/report-reason.component';
 import { UpdateRequestComponent } from './update-request/update-request.component';
+import { NewRequestComponent } from './new-request/new-request.component';
 
 
 const oktaConfig = {
@@ -49,7 +50,8 @@ const oktaConfig = {
     UpdateComponent,
     ReportPostsComponent,
     ReportReasonComponent,
-    UpdateRequestComponent
+    UpdateRequestComponent,
+    NewRequestComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +68,8 @@ const oktaConfig = {
   providers: [ { provide: OKTA_CONFIG, useValue: oktaConfig }],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  entryComponents: [DialogBoxComponent, UpdateComponent, ReportPostsComponent,UpdateRequestComponent, ReportReasonComponent],
+  entryComponents: [DialogBoxComponent, UpdateComponent,
+    ReportPostsComponent, NewRequestComponent,
+    UpdateRequestComponent, ReportReasonComponent],
 })
 export class AppModule { }

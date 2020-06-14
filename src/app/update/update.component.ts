@@ -33,6 +33,7 @@ export class UpdateComponent implements OnInit {
       title: [data.title, Validators.required],
       error_description: [data.error_description, Validators.required],
       solution: [data.solution, Validators.required],
+      reason:['',Validators.required],
       _id: [data._id]
     });
   }

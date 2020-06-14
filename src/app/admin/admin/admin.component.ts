@@ -8,6 +8,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { ReportPostsComponent } from 'src/app/report-posts/report-posts.component';
 import { ReportReasonComponent } from 'src/app/report-reason/report-reason.component';
 import { UpdateRequestComponent } from 'src/app/update-request/update-request.component';
+import { NewRequestComponent } from 'src/app/new-request/new-request.component';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class AdminComponent implements OnInit {
   datalist: any;
   reportList: any;
   updateRequest: any;
+  newPosts: any;
   isSuperUser = false;
   p = 1;
   itemsPerPage = APP_CONSTANT.ITEMSPERPAGE;
@@ -35,6 +37,7 @@ export class AdminComponent implements OnInit {
       if(this.isSuperUser){
         this.getReportData();
         this.getUpdateData();
+        this.getNewPostData();
       }
     });
   }
@@ -69,9 +72,19 @@ export class AdminComponent implements OnInit {
         this.updateRequest = [];
       });
   }
+  getNewPostData() {
+    const url = APP_CONSTANT.HOST_URL + APP_CONSTANT.NEWPOST_URL;
+    this.getSolutionService.getRequest(url).subscribe((data: any) => {
+      this.newPosts = data;
+    },
+      err => {
+        console.log(err);
+        this.newPosts = [];
+      });
+  }
   openUpdateDialog(item) {
     const dialogRef = this.dialog.open(UpdateComponent,{
-      height: '550px',
+      height: '700px',
       width: '600px',
       data: item
     });
@@ -84,7 +97,7 @@ export class AdminComponent implements OnInit {
   }
   openReportDialog() {
     const dialogRef = this.dialog.open(ReportPostsComponent,{
-      height: '700px',
+      height: '750px',
       width: '1000px',
       data: this.reportList
     });
@@ -98,7 +111,7 @@ export class AdminComponent implements OnInit {
   }
   openUpdateRequestDialog() {
     const dialogRef = this.dialog.open(UpdateRequestComponent,{
-      height: '700px',
+      height: '750px',
       width: '1000px',
       data: this.updateRequest
     });
@@ -124,6 +137,23 @@ export class AdminComponent implements OnInit {
       }
     });
   }
+
+  openNewPostDialog() {
+    const dialogRef = this.dialog.open(NewRequestComponent,{
+      height: '750px',
+      width: '1000px',
+      data: this.newPosts
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      if (result) {
+        this.getReportData();
+        this.getData();
+        this.getNewPostData();
+      }
+    });
+  }
+
   route() {
     this.router.navigateByUrl('createForm');
   }

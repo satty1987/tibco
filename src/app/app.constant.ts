@@ -7,5 +7,6 @@ export const APP_CONSTANT = {
   SEARCH_URL: 'v1/search',
   UPDATE_URL : 'v1/update-request',
   ITEMSPERPAGE: 3,
+  NEWPOST_URL: 'v1/new-posts',
   SUPER_ADMIN: ['satnammca@gmail.com']
 };
