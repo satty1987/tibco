@@ -38,7 +38,7 @@
       <button mat-button color="warn"  *ngIf="newPosts?.length > 0 && isSuperUser "(click)="openNewPostDialog()" >View Post Request</button>
     </div>
     <div class="col-12 mb-3  mt-3" *ngFor="let data of datalist | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
-      <div class="card p-3">
+      <div class="card p-4">
         <p><b>KEYWORDS</b> : {{data.title}}</p>
         <p><b>ERROR DESCRIPTION</b> : {{data.error_description}}</p>
         <p><b>SOLUTIONS</b> : {{data.solution}}</p>

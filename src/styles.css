@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 html {
     line-height: 1.15;
     /* 1 */
@@ -7,6 +6,7 @@ html {
     /* 2 */
     -webkit-text-size-adjust: 100%;
     /* 2 */
+    font-family: 'Open Sans', sans-serif;
   }
 
   /* Sections
@@ -16,7 +16,8 @@ html {
    */
   body {
     margin: 0;
-    background:#f4f4f4;
+    background:#f4f4f4 !important;
+    font-family: 'Open Sans', sans-serif;
   }
 
   /**
@@ -224,7 +225,7 @@ html {
   optgroup,
   select,
   textarea {
-    font-family: sans-serif;
+    font-family: 'Open Sans', sans-serif;
     /* 1 */
     font-size: 100%;
     /* 1 */
@@ -694,8 +695,8 @@ html {
       color:#fff;
   }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%; font-family: 'Open Sans', sans-serif;}
+body { margin: 0; font-family: 'Open Sans', sans-serif;}
 
 .mat-dialog-container .offset-md-3{
 margin-left :0 !important;
@@ -705,12 +706,22 @@ margin-left :0 !important;
 
 .ngx-pagination {
   padding-left: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 .ngx-pagination .current{
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   background:#e20074 !important;
 }
 .bg-magenta{
   background-image: linear-gradient(to right top,#e20074,#e91a77,#f1297a,#f8357e,#ff4081);
+}
+.card{
+  border-radius: 0 !important;
+  border: 0 !important;
+}
+p,h1,h2,h3,h4,h5,h6,div{
+  font-family: 'Open Sans', sans-serif;
+}
+p{
+  font-size: 14px;
 }

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderComponent } from './header/header/header.component';
 import { LoginComponent } from './login/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +23,8 @@ import { ReportPostsComponent } from './report-posts/report-posts.component';
 import { ReportReasonComponent } from './report-reason/report-reason.component';
 import { UpdateRequestComponent } from './update-request/update-request.component';
 import { NewRequestComponent } from './new-request/new-request.component';
-
+import { HttploaderComponent } from './httploader/httploader.component';
+import { LoaderInterceptor } from './service/loader.interceptor';
 
 const oktaConfig = {
   issuer: 'https://dev-337333.oktapreview.com/oauth2/default',
@@ -51,7 +52,8 @@ const oktaConfig = {
     ReportPostsComponent,
     ReportReasonComponent,
     UpdateRequestComponent,
-    NewRequestComponent
+    NewRequestComponent,
+    HttploaderComponent
   ],
   imports: [
     BrowserModule,
@@ -63,9 +65,9 @@ const oktaConfig = {
     CommonModule,
     OktaAuthModule,
     NgxPaginationModule
-
   ],
-  providers: [ { provide: OKTA_CONFIG, useValue: oktaConfig }],
+  providers: [ { provide: OKTA_CONFIG, useValue: oktaConfig },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   entryComponents: [DialogBoxComponent, UpdateComponent,
