@@ -91,6 +91,7 @@ export class AdminComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       if (result) {
+        this.openSnackBar('Request Successful Submitted');
         this.getData();
       }
     });
@@ -104,6 +105,7 @@ export class AdminComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       if (result) {
+        this.openSnackBar('Request Successful Submitted');
         this.getReportData();
         this.getData();
       }
@@ -119,6 +121,7 @@ export class AdminComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
       if (result) {
         this.getData();
+        this.openSnackBar('Request Successful Submitted');
         this. getUpdateData();
       }
     });
@@ -132,6 +135,7 @@ export class AdminComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       if (result) {
+        this.openSnackBar('Request Successful Submitted');
         this.getReportData();
         this.getData();
       }
@@ -147,6 +151,7 @@ export class AdminComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       if (result) {
+        this.openSnackBar('Request Successful Submitted');
         this.getReportData();
         this.getData();
         this.getNewPostData();

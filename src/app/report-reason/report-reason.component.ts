@@ -43,6 +43,7 @@ reasonForm: FormGroup;
       this.dialogRef.close();
     },
       (err: any) => {
+        this.dialogRef.close();
         console.log(err.error.message);
       });
   }
