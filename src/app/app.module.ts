@@ -30,7 +30,6 @@ const oktaConfig = {
   issuer: 'https://dev-337333.oktapreview.com/oauth2/default',
   clientId: '0oafkl686pfl21cP10h7',
   redirectUri: window.location.origin+'/implicit/callback',
-  pkce: true,
   tokenManager: {
     storage: 'sessionStorage'
   },
