@@ -36,6 +36,8 @@
       <button mat-button color="warn"  *ngIf="updateRequest?.length > 0 && isSuperUser "(click)="openUpdateRequestDialog()" >View Update Request</button>
       <button mat-button color="warn"  *ngIf="reportList?.length > 0 && isSuperUser "(click)="openReportDialog()" >View Report Request</button>
       <button mat-button color="warn"  *ngIf="newPosts?.length > 0 && isSuperUser "(click)="openNewPostDialog()" >View Post Request</button>
+      <button mat-raised-button  class="mr-2 float-right" color="warn"
+      (click)="export()">Export</button>
     </div>
     <div class="col-12 mb-3  mt-3" *ngFor="let data of datalist | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
       <div class="card p-4">

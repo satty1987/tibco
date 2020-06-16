@@ -28,10 +28,13 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-visit-counter": "^1.0.1",
+    "file-saver": "^2.0.2",
+    "https": "^1.0.0",
     "mongodb": "^3.5.9",
     "ngx-pagination": "^5.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "xlsx": "^0.16.2",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

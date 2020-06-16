@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GetSolutionService } from 'src/app/service/get-solution.service';
+
+import { ExportService } from 'src/app/service/export.service';
+
 import { Router } from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import { UpdateComponent } from 'src/app/update/update.component';
@@ -28,6 +31,7 @@ export class AdminComponent implements OnInit {
     private getSolutionService: GetSolutionService,
     private router: Router,
     private snackBar: MatSnackBar,
+    public exportService : ExportService,
     public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -175,6 +179,9 @@ export class AdminComponent implements OnInit {
     this.snackBar.open(message, '', {
       duration: 2000,
     });
+  }
+  export() {
+    this.exportService.exportExcel(this.datalist, 'export');
   }
 
 }

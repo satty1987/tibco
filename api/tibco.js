@@ -214,4 +214,25 @@ tibco.get('/update-request', (req, res, next) => {
 
 });
 
+tibco.get('/write', async (req, res) => {
+
+  const requestDb = req.app.locals.db.collection("getsolutions");
+
+  const https = require('https');
+  const jsonURL = "https://raw.githubusercontent.com/satty1987/ng-graphql/master/db1.json";
+  https.get(jsonURL, (response) => {
+  console.log(jsonURL);
+  let body = '';
+  response.on('data', function(chunk) {
+    body += chunk;
+  });
+  response.on('end', function() {
+    let json = JSON.parse(body);
+    requestDb.insertMany(json, (error, result) => {
+      console.log(result);
+    });
+  });
+})
+})
+
 module.exports = tibco
