@@ -8,5 +8,6 @@ export const APP_CONSTANT = {
   UPDATE_URL : 'v1/update-request',
   ITEMSPERPAGE: 3,
   NEWPOST_URL: 'v1/new-posts',
+  LIKE_POST_URL : 'v1/likes',
   SUPER_ADMIN: ['satnammca@gmail.com']
 };

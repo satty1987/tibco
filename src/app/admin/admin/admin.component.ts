@@ -183,5 +183,21 @@ export class AdminComponent implements OnInit {
   export() {
     this.exportService.exportExcel(this.datalist, 'export');
   }
+  postLikes(data) {
+    const url = `${APP_CONSTANT.HOST_URL}${APP_CONSTANT.LIKE_POST_URL}`;
+    const body = {
+      user: this.getSolutionService.userInfo.email,
+      postId: data._id
+    };
+
+    this.getSolutionService.createData(url, body).subscribe((response:any) => {
+
+      this.openSnackBar(response.message);
+
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
 
 }

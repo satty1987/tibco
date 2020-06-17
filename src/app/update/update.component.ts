@@ -33,7 +33,7 @@ export class UpdateComponent implements OnInit {
       title: [data.title, Validators.required],
       error_description: [data.error_description, Validators.required],
       solution: [data.solution, Validators.required],
-      reason:['',Validators.required],
+      reason:['', Validators.required],
       _id: [data._id]
     });
   }
@@ -41,6 +41,7 @@ export class UpdateComponent implements OnInit {
     console.log(form.value);
 
     if (form.valid) {
+      form.value.user = this.getSolutionService.userInfo.email;
       const url = APP_CONSTANT.HOST_URL + APP_CONSTANT.UPDATE_URL;
       this.getSolutionService.createData(url, form.value).subscribe((response) => {
         console.log(response);

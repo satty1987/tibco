@@ -476,7 +476,7 @@ html {
   }
 
   .s131 {
-    min-height: 80vh;
+    min-height: 55vh;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: center;
@@ -717,14 +717,31 @@ margin-left :0 !important;
 }
 .card{
   border-radius: 0 !important;
-  border: 0 !important;
+  border:1px solid transparent !important;
 }
 p,h1,h2,h3,h4,h5,h6,div{
   font-family: 'Open Sans', sans-serif;
 }
-p{
+p,li{
   font-size: 14px;
 }
 .mat-fab.mat-primary, .mat-flat-button.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary {
   background-color: #e20074;
 }
+.text-magenta{
+  color: #e20074;
+}
+.card:hover {
+  border:1px solid #ccc !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  transition: box-shadow 0.3s ease-in-out;
+}
+.box
+{
+  opacity: 0.9;
+}
+.box:hover
+{
+  opacity: 1;
+}
+

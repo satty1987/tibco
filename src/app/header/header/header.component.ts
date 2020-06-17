@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
   }
   async getUser() {
     this.user = await this.oktaAuth.getUser();
+    this.getSolutionService.userInfo = this.user;
     console.log(this.user);
     if (this.user && APP_CONSTANT.SUPER_ADMIN.includes(this.user.email)) {
       this.getSolutionService.isAdmin.next(true);

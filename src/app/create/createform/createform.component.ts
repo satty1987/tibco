@@ -36,7 +36,8 @@ export class CreateformComponent implements OnInit {
     let body = {
       'title': this.createForm.value.title,
       'error_description': this.createForm.value.error_description,
-      'solution': this.createForm.value.solution
+      'solution': this.createForm.value.solution,
+      'user': this.getSolutionService.userInfo.email
     };
     const path = `${APP_CONSTANT.HOST_URL}${APP_CONSTANT.GET_SOLUTIONS_URL}`;
     this.getSolutionService.createData(path, body).subscribe(data => {

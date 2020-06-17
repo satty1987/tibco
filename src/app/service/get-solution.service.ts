@@ -13,6 +13,7 @@ export class GetSolutionService {
 
   isLoggedIn: BehaviorSubject<any> = new BehaviorSubject(false);
   isAdmin: BehaviorSubject<any> = new BehaviorSubject(false);
+  userInfo = null;
   getCE(nameSearch: any) {
     const url = `${APP_CONSTANT.HOST_URL}${APP_CONSTANT.SEARCH_URL}?keyword=${nameSearch}`;
     console.log(url);

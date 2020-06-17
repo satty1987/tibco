@@ -1,5 +1,7 @@
 <div class="s131" *ngIf="showData">
   <form>
+    <p class="text-center"> <img src="../../../assets/images/CEGoogler.png" /></p>
+
     <div class="inner-form" >
       <div class="input-field first-wrap">
         <input id="search" *ngIf="showData" type="text" [(ngModel)]="nameSearch" name="name"
@@ -12,6 +14,24 @@
     </div>
     <h6 *ngIf="isError" class="text-danger mt-3">{{error}}</h6>
   </form>
+</div>
+<div class="w-100 bg-white mt-5" *ngIf="showData">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 pt-5 pb-5 ">
+        <h3 class="text-magenta mb-3">Welcome to the CE Googler Community</h3>
+        <p>CE Googler Community is a collaborative space for TIBCO users to share knowledge and support one another in making the best use of TIBCO products and services.  Join the community to connect and contribute via our wiki,
+          Q&A forum, ideas portal, and exchange for connectors, templates, accelerators, and other extensions to empower one another.</p>
+      </div>
+      <div class="col-md-6 p-5 ">
+        <h3 class="mb-3 text-magenta">How it Works   </h3>
+        <ul><li>Select the products / services you want to follow to personalize your experiences</li>
+          <li>Discover and contribute to how-to guides, best practices, and other resources within the Wiki</li>
+          <li>Ask and answer questions to build and share your knowledge</li>
+          </ul>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="container-fluid">
