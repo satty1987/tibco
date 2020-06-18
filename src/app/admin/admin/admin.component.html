@@ -40,21 +40,25 @@
       (click)="export()">Export</button>
     </div>
     <div class="col-12 mb-3  mt-3" *ngFor="let data of datalist | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
-      <div class="card p-4">
-        <p><b>KEYWORDS</b> : {{data.title}}</p>
-        <p><b>ERROR DESCRIPTION</b> : {{data.error_description}}</p>
-        <p><b>SOLUTIONS</b> : {{data.solution}}</p>
-        <p *ngIf="data?.likes.length > 0"><b>Likes</b> : {{data?.likes.length}}</p>
-        <p><b>POSTED BY</b> : {{data.user}}</p>
+      <div class="card ">
+        <div class="card-body">
+          <p><b>KEYWORDS</b> : {{data.title}}</p>
+          <p><b>ERROR DESCRIPTION</b> : {{data.error_description}}</p>
+          <p><b>SOLUTIONS</b> : {{data.solution}}</p>
+          <p class="card-text"><small class="text-muted">
+            Posted by {{data.user}}
+          </small></p>
 
-        <p class="border-top pt-2 mb-0">
-          <button mat-button class="mr-2" (click)="postLikes(data)" color="primary">Like </button>
-          <button mat-button class="mr-2"  (click)="openUpdateDialog(data)" color="primary">Update</button>
-          <button mat-button class="mr-2" *ngIf="isSuperUser" color="warn"
-            (click)="deleteItem(data._id)">Delete</button>
-          <button mat-button *ngIf="!isSuperUser" class="mr-2" color="warn"
-            (click)="openReportReasonDialog(data)">Report</button>
-        </p>
+          <p class="border-top pt-2 mb-0">
+            <button mat-button class="mr-2" (click)="postLikes(data)" color="primary">Helped </button>
+           <span *ngIf="data?.likes.length > 0" class="mr-3">{{data?.likes.length}} </span>
+            <button mat-button class="mr-2"  (click)="openUpdateDialog(data)" color="primary">Update</button>
+            <button mat-button class="mr-2" *ngIf="isSuperUser" color="warn" (click)="deleteItem(data._id)">Delete</button>
+            <button mat-button *ngIf="!isSuperUser" class="mr-2" color="warn" (click)="openReportReasonDialog(data)">Report</button>
+          </p>
+
+        </div>
+
       </div>
     </div>
     <div class="col-12  pt-3 pb-5 mb-5" *ngIf="datalist?.length > itemsPerPage">
