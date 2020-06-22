@@ -16,7 +16,7 @@ html {
    */
   body {
     margin: 0;
-    background:#f1f1f1 !important;
+    background:#f3f6f9 !important;
     font-family: 'Open Sans', sans-serif;
   }
 
@@ -716,8 +716,10 @@ margin-left :0 !important;
   background-image: linear-gradient(to right top,#e20074,#e91a77,#f1297a,#f8357e,#ff4081);
 }
 .card{
-  border-radius: 0 !important;
-  border:1px solid transparent !important;
+  -webkit-box-shadow: 0 0 30px 0 rgba(82,63,105,.05);
+  box-shadow: 0 0 30px 0 rgba(82,63,105,.05);
+  border: 0 !important;
+  border-radius:5px !important;
 }
 p,h1,h2,h3,h4,h5,h6,div{
   font-family: 'Open Sans', sans-serif;
@@ -731,11 +733,7 @@ p,li{
 .text-magenta{
   color: #e20074;
 }
-.card:hover {
-  border:1px solid #ccc !important;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
-  transition: box-shadow 0.3s ease-in-out;
-}
+
 .box
 {
   opacity: 0.9;
@@ -745,3 +743,33 @@ p,li{
   opacity: 1;
 }
 
+.form-controls {
+  display: block;
+  width: 250px;
+  height: 35px;
+  padding: .65rem 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #3f4254;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #e4e6ef;
+  border-radius: .42rem;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+}
+.form-controls:focus {
+  color: #3f4254;
+  background-color: #fff;
+  border-color: #69b3ff;
+  outline: 0;
+}
+.form-controls.active, .form-controls.focus, .form-controls:active, .form-controls:focus {
+  -webkit-box-shadow: none!important;
+  box-shadow: none!important;
+}

@@ -237,7 +237,7 @@ tibco.get('/test', async (req, res, next) => {
   const db = req.app.locals.db.collection("getsolutions");
 
   try {
-    const write  = await  db.updateMany({},{$set: {"timestamp": +new Date()}},false,true);
+    const write  = await  db.remove({});
     res.status(200).send({'status' : 'done'});
   } catch (error) {
     res.status(500).send({'status' : error});
@@ -317,25 +317,25 @@ tibco.get('/getsolution', async (req, res, next) => {
 
 });
 
-// tibco.get('/write', async (req, res) => {
+tibco.get('/write', async (req, res) => {
 
-//   const requestDb = req.app.locals.db.collection("getsolutions");
+  const requestDb = req.app.locals.db.collection("getsolutions");
 
 
-//   const jsonURL = "https://raw.githubusercontent.com/satty1987/configs/master/db.json";
-//   https.get(jsonURL, (response) => {
-//   console.log(jsonURL);
-//   let body = '';
-//   response.on('data', function(chunk) {
-//     body += chunk;
-//   });
-//   response.on('end', function() {
-//     let json = JSON.parse(body);
-//     requestDb.insertMany(json, (error, result) => {
-//       console.log(result);
-//     });
-//   });
-// })
-// })
+  const jsonURL = "https://raw.githubusercontent.com/satty1987/ng-graphql/master/dbs.json";
+  https.get(jsonURL, (response) => {
+  console.log(jsonURL);
+  let body = '';
+  response.on('data', function(chunk) {
+    body += chunk;
+  });
+  response.on('end', function() {
+    let json = JSON.parse(body);
+    requestDb.insertMany(json, (error, result) => {
+      console.log(result);
+    });
+  });
+})
+})
 
 module.exports = tibco

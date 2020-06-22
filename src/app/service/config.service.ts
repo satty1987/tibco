@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 export class AppConfigService {
   CONFIG_URL = "https://raw.githubusercontent.com/satty1987/ng-graphql/master/db1.json";
   private config = null;
-  private configuration$: Observable<any>;
+  private configuration: Observable<any>;
   constructor(private httpClient: HttpClient) {
 
   }
@@ -14,14 +14,14 @@ export class AppConfigService {
     return this.config;
   }
   public load(): any {
-    if (!this.configuration$) {
-      this.configuration$ = this.httpClient.get<any>(this.CONFIG_URL).pipe(
+    if (!this.configuration) {
+      this.configuration = this.httpClient.get<any>(this.CONFIG_URL).pipe(
         shareReplay(1),
         tap(data => {
           this.config = data;
         })
       );
     }
-    return this.configuration$;
+    return this.configuration;
 }
 }

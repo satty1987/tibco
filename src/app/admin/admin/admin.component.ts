@@ -12,7 +12,8 @@ import { ReportPostsComponent } from 'src/app/report-posts/report-posts.componen
 import { ReportReasonComponent } from 'src/app/report-reason/report-reason.component';
 import { UpdateRequestComponent } from 'src/app/update-request/update-request.component';
 import { NewRequestComponent } from 'src/app/new-request/new-request.component';
-
+import * as _ from 'lodash';
+import { AppConfigService } from 'src/app/service/config.service';
 
 @Component({
   selector: 'app-admin',
@@ -27,14 +28,19 @@ export class AdminComponent implements OnInit {
   isSuperUser = false;
   p = 1;
   itemsPerPage = APP_CONSTANT.ITEMSPERPAGE;
+  config = null;
+  masterList: any;
   constructor(
     private getSolutionService: GetSolutionService,
     private router: Router,
     private snackBar: MatSnackBar,
-    public exportService : ExportService,
+    public appConfigService: AppConfigService,
+    public exportService: ExportService,
     public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.config = this.appConfigService.getConfig;
+    console.log(this.config);
     this.getData();
     this.getSolutionService.isAdmin.subscribe((data: boolean) => {
       this.isSuperUser = data;
@@ -50,6 +56,7 @@ export class AdminComponent implements OnInit {
     this.getSolutionService.getRequest(url).subscribe((data: any) => {
       console.log(data);
       this.datalist = data;
+      this.masterList = [...data];
       this.p = 1;
     },
       err => {
@@ -181,7 +188,11 @@ export class AdminComponent implements OnInit {
     });
   }
   export() {
-    this.exportService.exportExcel(this.datalist, 'export');
+    const data = _.map(this.datalist, (item) => {
+      return _.pick(item, 'title', 'error_description', 'solution');
+    });
+
+    this.exportService.exportExcel(data, 'export');
   }
   postLikes(data) {
     const url = `${APP_CONSTANT.HOST_URL}${APP_CONSTANT.LIKE_POST_URL}`;
@@ -190,14 +201,22 @@ export class AdminComponent implements OnInit {
       postId: data._id
     };
 
-    this.getSolutionService.createData(url, body).subscribe((response:any) => {
+    this.getSolutionService.createData(url, body).subscribe((response: any) => {
 
       this.openSnackBar(response.message);
-
+      this.getData();
     }, (error) => {
       console.log(error);
     });
   }
 
-
+  search(searchText) {
+    const arrayOfMatchedObjects = this.masterList.filter(object => {
+      return JSON.stringify(object)
+        .toString()
+        .includes(searchText);
+    });
+    this.p = 1;
+    this.datalist =  arrayOfMatchedObjects;
+  }
 }

@@ -16,8 +16,8 @@ app.use('/v1', tibco);
 app.get('*', (req, res) => {
   res.sendfile('./dist/tibco/index.html');
 })
-//const url = "mongodb://ec2-3-133-105-146.us-east-2.compute.amazonaws.com:27017/cegoogler";
-const url = "mongodb+srv://apandey26:apandey26@ashish-i6w8s.mongodb.net/test?retryWrites=true&w=majority";
+const url = "mongodb://ec2-3-133-105-146.us-east-2.compute.amazonaws.com:27017/cegoogler";
+//const url = "mongodb+srv://apandey26:apandey26@ashish-i6w8s.mongodb.net/test?retryWrites=true&w=majority";
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true
